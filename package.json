@@ -1,0 +1,25 @@
+{
+  "name": "WebWallet API",
+  "version": "0.0.1",
+  "private": "true",
+  "description": "WebWallet API reference implementation in Node.js.",
+  "keywords": ["wallet","currencies","transactions"],
+  "author": "",
+  "license": "",
+  "main": "api.js",
+  "dependencies": {
+    "express": "^4.x.x",
+    "a127-magic": "^0.11.0",
+    "bluebird": "^2.9.x",
+    "cors": "^2.7.x",
+    "zmq": "^2.12.x"
+  },
+  "scripts": {
+    "start": "node api.js"
+  },
+  "api": {
+    "name": "api.webwallet.org",
+    "basePath": "/",
+    "main": "api.js"
+  }
+}
