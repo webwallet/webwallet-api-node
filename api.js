@@ -15,6 +15,22 @@ a127.init(function(config) {
   api.use(cors());
   api.use(a127.middleware(config));
 
+  /* Handle unsupported requests */
+  api.use(function(err, req, res, next) {
+    if (err && typeof err === 'object') {
+      Object.defineProperty(err, 'message', { enumerable: true });
+      if (err.allowedMethods) {
+          res.status(405);
+          err.message = 'Unsupported ' + req.method +' request.';
+      }
+      return res.json(err).end();
+    } else {
+      return res.status(405).json({
+          message: 'Unsupported request.'
+      }).end();
+    }
+  });
+
   /* Start server */
   http.createServer(api).listen(process.env.PORT || 8080, function (err) {
     if (err) throw err;
